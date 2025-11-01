@@ -143,3 +143,51 @@ function addDynamicStyles() {
     `;
     document.head.appendChild(style);
 }
+ // Funciones para la página del producto
+function toExchangeImage(img) {
+    document.getElementById("img_main").src = img.src;
+  }
+
+  function viewImage(src) {
+    // Abre la imagen en pantalla completa o modal
+    const win = window.open("", "_blank");
+    win.document.write(`<img src="${src}" style="width:100%;height:auto;">`);
+  }
+  
+  function toggleDescription() {
+    const desc = document.getElementById('descContent');
+    const arrow = document.getElementById('arrowIcon');
+    desc.classList.toggle('max-h-0');
+    desc.classList.toggle('max-h-[2000px]');
+    arrow.classList.toggle('rotate-180');
+  }
+  
+  // Manejo de pestañas Producto e Imágenes
+  const productTab = document.getElementById('product-tab');
+  const imagesTab = document.getElementById('images-tab');
+  const imagesSection = document.getElementById('images-section');
+  const infoSection = document.getElementById('info-section');
+
+  // Por defecto: mostrar información, ocultar imágenes
+  imagesSection.classList.add('hidden');
+  infoSection.classList.remove('hidden');
+
+  // Mostrar imágenes y ocultar información
+  imagesTab.addEventListener('click', () => {
+    imagesSection.classList.remove('hidden');
+    infoSection.classList.add('hidden');
+    imagesTab.classList.add('bg-blue-600', 'text-white');
+    imagesTab.classList.remove('bg-gray-100', 'text-gray-700');
+    productTab.classList.remove('bg-blue-600', 'text-white');
+    productTab.classList.add('bg-gray-100', 'text-gray-700');
+  });
+
+  // Mostrar información y ocultar imágenes
+  productTab.addEventListener('click', () => {
+    infoSection.classList.remove('hidden');
+    imagesSection.classList.add('hidden');
+    productTab.classList.add('bg-blue-600', 'text-white');
+    productTab.classList.remove('bg-gray-100', 'text-gray-700');
+    imagesTab.classList.remove('bg-blue-600', 'text-white');
+    imagesTab.classList.add('bg-gray-100', 'text-gray-700');
+  });
